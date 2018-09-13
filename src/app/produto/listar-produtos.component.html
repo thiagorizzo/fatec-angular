@@ -1,9 +1,9 @@
 <h1>{{titulo}}</h1>
 
-<div *ngIf="!produtos || produtos.length == 0">
+<div *ngIf='!possuiProdutos()'>
     <h3>Nenhum produto encontrado.</h3>
 </div>
-<div *ngIf="produtos && produtos.length > 0">
+<div *ngIf='possuiProdutos()'>
     <table>
         <thead>
             <th>Código</th>

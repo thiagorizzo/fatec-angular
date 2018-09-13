@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 // DECORATOR: É uma função que recebe um objeto de configuração
 @Component({
     selector: 'app-listar-produtos',
-    templateUrl: 'listar-produtos.compnent.html'
+    templateUrl: 'listar-produtos.component.html'
 })
 // CLASSE
 export class ListarProdutosComponent {

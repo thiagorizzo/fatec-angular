@@ -19,7 +19,7 @@
                         <tr *ngFor="let produto of produtos" (click)='selecionarProduto(produto)'>
                             <td>{{produto.codigo}}</td>
                             <td>{{produto.nome}}</td>
-                            <td>{{produto.preco}}</td>
+                            <td>{{produto.preco | currency:'BRL':'symbol-narrow':'0.2-2'}}</td>
                             <td><img [src]='retornaImagemUrl(produto)' style="height: 100px; width: 100px;" /></td>
                         </tr>
                     </tbody>
@@ -30,11 +30,11 @@
             <div *ngIf='produtoSelecionado' class="card" style="width: 18rem;">
                 <img class="card-img-top" [src]='retornaImagemUrl(produtoSelecionado)'>
                 <div class="card-body">
-                    <h5 class="card-title">{{produtoSelecionado.nome}}</h5>
+                    <h5 class="card-title">{{produtoSelecionado.nome | uppercase }}</h5>
                     <p class="card-text">{{produtoSelecionado.descricao}}</p>
                 </div>
                 <div class="card-footer text-muted">
-                    {{produtoSelecionado.preco}}
+                    {{produtoSelecionado.preco | currency:'BRL':'symbol':'0.2-2'}}
                 </div>
             </div>
         </div>

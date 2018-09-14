@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ListarProdutosComponent } from './produto/listar-produtos.component';
+import { TemersPipe } from './pipes/temers.pipe';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    ListarProdutosComponent
+    ListarProdutosComponent,
+    TemersPipe
   ],
   imports: [
     BrowserModule

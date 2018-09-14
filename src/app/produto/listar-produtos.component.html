@@ -19,7 +19,7 @@
                         <tr *ngFor="let produto of produtos | slice:getProdutoInicialPagina():getProdutoFinalPagina()" (click)='selecionarProduto(produto)'>
                             <td>{{produto.codigo}}</td>
                             <td>{{produto.nome}}</td>
-                            <td>{{produto.preco | currency:'BRL':'symbol':'0.2-2'}}</td>
+                            <td>{{produto.preco | temers:true}}</td>
                             <td><img [src]='retornaImagemUrl(produto)'/></td>
                         </tr>
                     </tbody>

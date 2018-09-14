@@ -16,14 +16,25 @@
                         <th>Capa</th>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let produto of produtos" (click)='selecionarProduto(produto)'>
+                        <tr *ngFor="let produto of produtos | slice:getProdutoInicialPagina():getProdutoFinalPagina()" (click)='selecionarProduto(produto)'>
                             <td>{{produto.codigo}}</td>
                             <td>{{produto.nome}}</td>
-                            <td>{{produto.preco | currency:'BRL':'symbol-narrow':'0.2-2'}}</td>
+                            <td>{{produto.preco | currency:'BRL':'symbol':'0.2-2'}}</td>
                             <td><img [src]='retornaImagemUrl(produto)'/></td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="well row">
+                    <div class="col-xs-2">
+                        <button class="btn btn-primary" (click)="paginaAnterior()"><</button>
+                    </div>
+                    <div *ngFor='let pagina of getPaginas(); let i = index;' class="col-xs-2">
+                        <button class="btn btn-primary" (click)="setPaginaAtual(i+1)">{{i}}</button>
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-primary" (click)="paginaPosterior()">></button>
+                    </div>
+                </div>                
             </div>
         </div>
         <div class="col-sm-2">

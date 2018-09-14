@@ -12,6 +12,8 @@ import { IProduto } from './produto';
 // CLASSE
 export class ListarProdutosComponent {
     produtoSelecionado = undefined;
+    paginaAtual : number = 1;
+    private produtosPorPagina : number = 2;
 
     produtos : IProduto[] = [
         { codigo: 1, nome: 'World Of Warcraft', preco: 59.90, imagemUrl: 'WorldOfWarcraft.jpg', descricao: 'World of Warcraft é um jogo on-line, (MMORPG) da produtora Blizzard lançado em 2004. O jogo se passa no mundo fantástico de Azeroth.' },
@@ -22,12 +24,36 @@ export class ListarProdutosComponent {
 
     titulo : string = 'Lista de Produtos';
 
+    setPaginaAtual : (pagina : number) => void =
+        (pagina) => {
+            let quantidadePaginas = this.produtos.length / this.produtosPorPagina;
+            console.log(pagina);
+
+            if ((pagina > 0) && (pagina < quantidadePaginas + 1))
+                this.paginaAtual = pagina;
+        };
+
+    getProdutoInicialPagina : () => number =
+        () => { return this.paginaAtual * this.produtosPorPagina - 2; }
+
+    getProdutoFinalPagina : () => number =
+        () => { return this.paginaAtual * this.produtosPorPagina; }
+
+    getPaginas : () => number[] =
+        () => { return new Array<number>(this.produtos.length / this.produtosPorPagina); }
+
     possuiProdutos : () => boolean = 
-        () => { return this.produtos && this.produtos.length > 0 };
+        () => { return this.produtos && this.produtos.length > 0 }
 
-    retornaImagemUrl : (produto) => string =
-        (produto) => { return produto.imagemUrl ? `http://localhost:4200/assets/images/${produto.imagemUrl}` : 'https://via.placeholder.com/100x100'; };
+    retornaImagemUrl : (produto : IProduto) => string =
+        (produto) => { return produto.imagemUrl ? `http://localhost:4200/assets/images/${produto.imagemUrl}` : 'https://via.placeholder.com/100x100'; }
 
-    selecionarProduto : (produto) => void =
+    selecionarProduto : (produto : IProduto) => void =
         (produto) => { this.produtoSelecionado = produto == this.produtoSelecionado ? undefined : produto; }
+
+    paginaAnterior : () => void =
+        () => { this.setPaginaAtual(this.paginaAtual - 1); }
+
+    paginaPosterior : () => void =
+        () => { this.setPaginaAtual(this.paginaAtual + 1); }
 }

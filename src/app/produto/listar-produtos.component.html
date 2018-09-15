@@ -16,7 +16,7 @@
                         <th>Capa</th>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let produto of produtos | slice:getProdutoInicialPagina():getProdutoFinalPagina()" (click)='selecionarProduto(produto)'>
+                        <tr *ngFor="let produto of produtos | slice:getProdutoInicialPagina():getProdutoFinalPagina()" (click)='selecionarProduto(produto)' [ngClass]="getEstilosProduto(produto)">
                             <td>{{produto.codigo}}</td>
                             <td>{{produto.nome}}</td>
                             <td>{{produto.preco | temers:true}}</td>

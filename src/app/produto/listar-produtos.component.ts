@@ -59,4 +59,11 @@ export class ListarProdutosComponent implements OnInit {
 
     paginaPosterior : () => void =
         () => { this.setPaginaAtual(this.paginaAtual + 1); }
+
+    getEstilosProduto : (produto : IProduto) => object =
+        (produto) => {
+            return {
+                'produto-selecionado': produto == this.produtoSelecionado
+            };
+        }
 }

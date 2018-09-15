@@ -2,3 +2,8 @@ tbody td img {
     height: 100px;
     width: 100px;
 }
+
+.produto-selecionado {
+    color: darkcyan;
+    font-weight: bold;
+}

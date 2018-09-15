@@ -29,7 +29,7 @@
                         <button class="btn btn-primary" (click)="paginaAnterior()"><</button>
                     </div>
                     <div *ngFor='let pagina of getPaginas(); let i = index;' class="col-xs-2">
-                        <button class="btn btn-primary" (click)="setPaginaAtual(i+1)">{{i}}</button>
+                        <button class="btn btn-primary" (click)="setPaginaAtual(i+1)">{{i+1}}</button>
                     </div>
                     <div class="col-xs-2">
                         <button class="btn btn-primary" (click)="paginaPosterior()">></button>

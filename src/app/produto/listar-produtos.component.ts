@@ -1,6 +1,7 @@
 // IMPORT
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { IProduto } from './produto';
+import { EventEmitter } from '@angular/core';
 
 // DECORATOR: É uma função que recebe um objeto de configuração
 @Component({
@@ -14,9 +15,12 @@ export class ListarProdutosComponent implements OnInit {
 
     produtoSelecionado = undefined;
     paginaAtual : number = 1;
-    private produtosPorPagina : number = 2;
+    private produtosPorPagina : number = 4;
     produtos : IProduto[];
     titulo : string = 'Lista de Produtos';
+
+    @Output()
+    produtoSelecionadoChange : EventEmitter<IProduto> = new EventEmitter<IProduto>();
 
     ngOnInit(): void {
         this.produtos = [
@@ -30,14 +34,12 @@ export class ListarProdutosComponent implements OnInit {
     setPaginaAtual : (pagina : number) => void =
         (pagina) => {
             let quantidadePaginas = this.produtos.length / this.produtosPorPagina;
-            console.log(pagina);
-
             if ((pagina > 0) && (pagina < quantidadePaginas + 1))
                 this.paginaAtual = pagina;
         };
 
     getProdutoInicialPagina : () => number =
-        () => { return this.paginaAtual * this.produtosPorPagina - 2; }
+        () => { return this.getProdutoFinalPagina() - this.produtosPorPagina; }
 
     getProdutoFinalPagina : () => number =
         () => { return this.paginaAtual * this.produtosPorPagina; }
@@ -52,7 +54,10 @@ export class ListarProdutosComponent implements OnInit {
         (produto) => { return produto.imagemUrl ? `http://localhost:4200/assets/images/${produto.imagemUrl}` : 'https://via.placeholder.com/100x100'; }
 
     selecionarProduto : (produto : IProduto) => void =
-        (produto) => { this.produtoSelecionado = produto == this.produtoSelecionado ? undefined : produto; }
+        (produto) => { 
+            this.produtoSelecionado = produto == this.produtoSelecionado ? undefined : produto; 
+            this.produtoSelecionadoChange.emit(this.produtoSelecionado);
+        }
 
     paginaAnterior : () => void =
         () => { this.setPaginaAtual(this.paginaAtual - 1); }

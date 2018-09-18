@@ -1,3 +1,6 @@
-<span *ngFor="let estrela of getEstrelas()">
+<span *ngFor="let estrela of getEstrelas(); let indice = index;" (click)="selecionaEstrelaSelected(indice)">
     <img src="http://localhost:4200/assets/images/Star.png"/>
+</span>
+<span *ngFor="let estrela of getEstrelasUnselected(); let indice = index;" (click)="selecionaEstrelaUnselected(indice)">
+    <img src="http://localhost:4200/assets/images/StarUnselected.png"/>
 </span>

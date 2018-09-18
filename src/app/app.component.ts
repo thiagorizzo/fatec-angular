@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IProduto } from './produto/produto';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angularFatec2018';
+  
+  produtoSelecionado : IProduto;
+
+  onProdutoSelecionado(produto : IProduto) {
+    this.produtoSelecionado = produto;
+  }
 }

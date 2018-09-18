@@ -4,4 +4,5 @@ export interface IProduto {
     descricao : string;
     preco : number;
     imagemUrl : string;
+    avaliacao : number;
 }

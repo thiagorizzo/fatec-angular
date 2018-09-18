@@ -13,6 +13,7 @@
                         <th>Código</th>
                         <th>Nome</th>
                         <th>Preço</th>
+                        <th>Avaliação</th>
                         <th>Capa</th>
                     </thead>
                     <tbody>
@@ -20,6 +21,7 @@
                             <td>{{produto.codigo}}</td>
                             <td>{{produto.nome}}</td>
                             <td>{{produto.preco | temers:true}}</td>
+                            <td><avaliacao [valor]='produto.avaliacao'></avaliacao></td>
                             <td><img [src]='retornaImagemUrl(produto)'/></td>
                         </tr>
                     </tbody>

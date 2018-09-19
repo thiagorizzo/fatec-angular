@@ -1,6 +1,8 @@
 import { Component, OnChanges } from "@angular/core";
 import { Input } from "@angular/core";
 import { SimpleChanges } from "@angular/core";
+import { EventEmitter } from "@angular/core";
+import { Output } from "@angular/core";
 
 @Component(
     {
@@ -16,7 +18,11 @@ export class AvaliacaoComponent implements OnChanges {
     @Input()
     valor : number;
 
+    @Output()
+    valorChange : EventEmitter<number> = new EventEmitter<number>();
+
     ngOnChanges(changes: SimpleChanges) : void {
+
     }
 
     getEstrelas : () => any[] =
@@ -32,6 +38,7 @@ export class AvaliacaoComponent implements OnChanges {
 
             let estrelaSelecionada = indice;
             this.valor = estrelaSelecionada;
+            this.valorChange.emit(this.valor);
         }
 
     selecionaEstrelaUnselected : (indice : number) => void =
@@ -41,5 +48,6 @@ export class AvaliacaoComponent implements OnChanges {
 
             let estrelaSelecionada = this.valor + (indice + 1);
             this.valor = estrelaSelecionada;
+            this.valorChange.emit(this.valor);
         }
 }

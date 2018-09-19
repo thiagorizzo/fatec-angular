@@ -1,2 +1,2 @@
 <app-listar-produtos (produtoSelecionadoChange)="onProdutoSelecionado($event)"></app-listar-produtos>
-<app-editar-produtos [produtoEditar]='produtoSelecionado'></app-editar-produtos>
+<app-editar-produtos (valorChange)="onValorChange($event)" [produtoEditar]='produtoSelecionado'></app-editar-produtos>

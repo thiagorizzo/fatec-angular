@@ -15,4 +15,6 @@ export class EditarProdutosComponent implements OnInit {
   ngOnInit() {
   }
 
+  onAvaliacaoChange : (valor : number) => void =
+    (valor) => { this.produtoEditar.avaliacao = valor; }
 }

@@ -1,21 +1,34 @@
 <div class="container">
   <div *ngIf="produtoEditar">
-    <div class="frm-group">
-      <label>Código:</label>
-      <input class="form-control" type="text" name="codigo" [(ngModel)]="produtoEditar.codigo" />
-    </div>
-    <div class="form-group">
-      <label>Nome:</label>
-      <input class="form-control" type="text" name="nome" [(ngModel)]="produtoEditar.nome"/>
-    </div>
-    <div class="form-group">
-      <label>Valor:</label>
-      <input class="form-control" type="number" name="codigo" [(ngModel)]="produtoEditar.preco"/>
-    </div>
-    <div class="form-group">
-      <label>Avaliacao:</label>
-      <avaliacao class="form-control" (valorChange)="onAvaliacaoChange($event)" enableEdit="true" [valor]="produtoEditar.avaliacao"></avaliacao>
-    </div>
-    <button class="btn btn-primary" (click)="confirmarEdicao()">Confirmar</button>
+    <form name="formulario">
+      <div class="frm-group">
+        <label>Código:</label>
+        <input class="form-control" type="number" name="codigo" [(ngModel)]="produtoEditar.codigo" #codigoModel="ngModel" required />
+        <div class="alert alert-danger" *ngIf="codigoModel.invalid">
+            Por favor, informe um código.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Nome:</label>
+        <input class="form-control" type="text" name="nome" [(ngModel)]="produtoEditar.nome" #nomeModel="ngModel" required />
+        <div class="alert alert-danger" *ngIf="nomeModel.invalid">
+            Por favor, informe um código.
+        </div>        
+      </div>
+      <div class="form-group">
+        <label>Valor:</label>
+        <input class="form-control" type="number" name="preco" [(ngModel)]="produtoEditar.preco" #precoModel="ngModel" required />
+        <div class="alert alert-danger" *ngIf="precoModel.invalid">
+            Por favor, informe um código.
+        </div>        
+      </div>
+      <div class="form-group">
+        <label>Avaliacao:</label>
+        <avaliacao class="form-control" (valorChange)="onAvaliacaoChange($event)" enableEdit="true" [valor]="produtoEditar.avaliacao"></avaliacao>
+      </div>
+      <button class="btn btn-primary" (click)="confirmarEdicao()">Confirmar</button>
+    </form>
   </div>
 </div>
+
+

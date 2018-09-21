@@ -1,34 +1,41 @@
 <div class="container">
   <div *ngIf="produtoEditar">
-    <form name="formulario">
+    <form name="formulario" #formulario="ngForm" (ngSubmit)="confirmarEdicao(formulario)">
       <div class="frm-group">
         <label>Código:</label>
         <input class="form-control" type="number" name="codigo" [(ngModel)]="produtoEditar.codigo" #codigoModel="ngModel" required />
-        <div class="alert alert-danger" *ngIf="codigoModel.invalid">
+        <div class="alert alert-danger" [hidden]="codigoModel.valid || codigoModel.pristine">
             Por favor, informe um código.
         </div>
       </div>
       <div class="form-group">
+        {{nomeModel.class}}
         <label>Nome:</label>
-        <input class="form-control" type="text" name="nome" [(ngModel)]="produtoEditar.nome" #nomeModel="ngModel" required />
-        <div class="alert alert-danger" *ngIf="nomeModel.invalid">
-            Por favor, informe um código.
+        <input class="form-control" type="text" name="nome" [(ngModel)]="produtoEditar.nome" #nomeModel="ngModel" minlength='2' required />
+        <div class="alert alert-danger" [hidden]="nomeModel.valid || nomeModel.pristine">
+          <span *ngIf="nomeModel.errors && nomeModel.errors.minlength" >
+              Por favor, nome deve possuir pelo mentos 2 caracteres.
+          </span> 
+          <span *ngIf="nomeModel.errors && nomeModel.errors.required" >
+              Por favor, nome deve informado.
+          </span>             
         </div>        
       </div>
       <div class="form-group">
         <label>Valor:</label>
         <input class="form-control" type="number" name="preco" [(ngModel)]="produtoEditar.preco" #precoModel="ngModel" required />
-        <div class="alert alert-danger" *ngIf="precoModel.invalid">
-            Por favor, informe um código.
+        <div class="alert alert-danger" [hidden]="precoModel.valid || precoModel.pristine">
+            Por favor, informe um preço.
         </div>        
       </div>
       <div class="form-group">
         <label>Avaliacao:</label>
         <avaliacao class="form-control" (valorChange)="onAvaliacaoChange($event)" enableEdit="true" [valor]="produtoEditar.avaliacao"></avaliacao>
       </div>
-      <button class="btn btn-primary" (click)="confirmarEdicao()">Confirmar</button>
+      <button class="btn btn-primary" type="submit" >Confirmar</button>
     </form>
   </div>
 </div>
+
 
 

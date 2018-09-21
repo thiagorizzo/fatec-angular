@@ -7,6 +7,7 @@ import { ListarProdutosComponent } from './produto/listar-produtos.component';
 import { TemersPipe } from './pipes/temers.pipe';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { EditarProdutosComponent } from './produto/editar-produtos.component';
+import { ProdutoService } from './produto/produto.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { EditarProdutosComponent } from './produto/editar-produtos.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ProdutoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ import { ListarProdutosComponent } from './produto/listar-produtos.component';
 import { TemersPipe } from './pipes/temers.pipe';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { EditarProdutosComponent } from './produto/editar-produtos.component';
-import { ProdutoService } from './produto/produto.service';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -15,14 +15,15 @@ import { ProdutoService } from './produto/produto.service';
     ListarProdutosComponent,
     TemersPipe,
     AvaliacaoComponent,
-    EditarProdutosComponent
+    EditarProdutosComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ProdutoService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

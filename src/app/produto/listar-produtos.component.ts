@@ -4,14 +4,12 @@ import { IProduto } from './produto';
 import { EventEmitter } from '@angular/core';
 import { ProdutoService } from './produto.service';
 
-// DECORATOR: É uma função que recebe um objeto de configuração
 @Component({
     selector: 'app-listar-produtos',
     templateUrl: 'listar-produtos.component.html',
     //styles: [ 'tbody td img { height: 100px; width: 100px; }' ],
     styleUrls: [ 'listar-produtos.component.css' ]
 })
-// CLASSE
 export class ListarProdutosComponent implements OnInit {
 
     produtoSelecionado = undefined;

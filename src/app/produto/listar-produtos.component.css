@@ -7,3 +7,7 @@ tbody td img {
     color: darkcyan;
     font-weight: bold;
 }
+
+.produto-descricao {
+    display: none;
+}

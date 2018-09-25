@@ -8,6 +8,7 @@ import { TemersPipe } from './pipes/temers.pipe';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { EditarProdutosComponent } from './produto/editar-produtos.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HighlightDirective } from './directives/highlight.directive';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

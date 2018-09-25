@@ -14,7 +14,7 @@ export class ListarProdutosComponent implements OnInit {
 
     produtoSelecionado = undefined;
     paginaAtual : number = 1;
-    private produtosPorPagina : number = 4;
+    private produtosPorPagina : number = 2;
     produtos : IProduto[];
     titulo : string = 'Lista de Produtos';
 
@@ -24,11 +24,14 @@ export class ListarProdutosComponent implements OnInit {
     produtoSelecionadoChange : EventEmitter<IProduto> = new EventEmitter<IProduto>();
 
     ngOnInit(): void {
-        this.produtos = this.getProdutos();        
+        this.getProdutos();
     }
 
-    getProdutos() {
-        return this.produtoService.getProdutos();
+    private getProdutos() : void {
+        this.produtoService.getProdutos()
+                                  .subscribe(
+                                        (data) => this.produtos = data
+                                    );
     }
 
     setPaginaAtual : (pagina : number) => void =
@@ -51,7 +54,7 @@ export class ListarProdutosComponent implements OnInit {
         () => { return this.produtos && this.produtos.length > 0 }
 
     retornaImagemUrl : (produto : IProduto) => string =
-        (produto) => { return produto.imagemUrl ? `http://localhost:4200/assets/images/${produto.imagemUrl}` : 'https://via.placeholder.com/100x100'; }
+        (produto) => { return produto.imagemUrl ? produto.imagemUrl : 'https://via.placeholder.com/100x100'; }
 
     selecionarProduto : (produto : IProduto) => void =
         (produto) => { 

@@ -9,7 +9,6 @@
         </div>
       </div>
       <div class="form-group">
-        {{nomeModel.class}}
         <label>Nome:</label>
         <input class="form-control" type="text" name="nome" [(ngModel)]="produtoEditar.nome" #nomeModel="ngModel" minlength='2' required />
         <div class="alert alert-danger" [hidden]="nomeModel.valid || nomeModel.pristine">
@@ -32,7 +31,7 @@
         <label>Avaliacao:</label>
         <avaliacao class="form-control" (valorChange)="onAvaliacaoChange($event)" enableEdit="true" [valor]="produtoEditar.avaliacao"></avaliacao>
       </div>
-      <button class="btn btn-primary" type="submit" >Confirmar</button>
+      <button class="btn btn-primary" type="submit">Confirmar</button>
     </form>
   </div>
 </div>

@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 
 var express = new expressClass();
 
-
 express.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -29,6 +28,19 @@ express.use(bodyParser.urlencoded({
     extended: true
 }));
 
+express.get('/Produto/:codigo', function(request, response) {
+    var codigo = request.params["codigo"];
+    var promise = new Promise(
+        (resolve, reject) => {
+            resolve(produtos.filter(produto => {
+                return produto.codigo == codigo
+            })[0]);
+        }
+    );
+    promise.then(produto => {
+        response.json(produto);
+    });
+});
 
 express.get('/Produtos', function(request, response) {
 	response.json(produtos);

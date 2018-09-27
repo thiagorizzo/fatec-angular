@@ -10,6 +10,7 @@ import { catchError, tap, map } from "rxjs/operators";
 export class ProdutoService {
     
     private produtosUrl = "http://localhost:8888/Produtos";
+    private produtoUrl = "http://localhost:8888/Produto";
 
     constructor(private http : HttpClient) { }
 
@@ -20,6 +21,14 @@ export class ProdutoService {
                                             catchError(this.handleError)
                                         )
     }
+
+    getProduto(codigo : number) : Observable<IProduto> {
+        return this.http.get<IProduto>(this.produtoUrl + `/${codigo}`)
+                                        .pipe(
+                                            tap(data => console.log(JSON.stringify(data))),
+                                            catchError(this.handleError)
+                                        )
+    }    
 
     private handleError(err : HttpErrorResponse) {
         // TODO: logging

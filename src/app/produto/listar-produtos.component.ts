@@ -17,6 +17,7 @@ export class ListarProdutosComponent implements OnInit {
     private produtosPorPagina : number = 2;
     produtos : IProduto[];
     titulo : string = 'Lista de Produtos';
+    alertaErro : string;
 
     constructor(private produtoService : ProdutoService) { }
 
@@ -30,7 +31,8 @@ export class ListarProdutosComponent implements OnInit {
     private getProdutos() : void {
         this.produtoService.getProdutos()
                                   .subscribe(
-                                        (data) => this.produtos = data
+                                        (data) => this.produtos = data,
+                                        (error) => this.alertaErro = <any>error
                                     );
     }
 

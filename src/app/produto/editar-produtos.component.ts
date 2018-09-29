@@ -21,8 +21,6 @@ export class EditarProdutosComponent implements OnInit {
   constructor(private route : ActivatedRoute, private produtoService : ProdutoService) { }
 
   ngOnInit() {
-    if (this.IsEditar == null) throw new Error("Attribute 'IsEditar' is required"); 
-
     let codigoParameto = +this.route.snapshot.paramMap.get('codigo');
     if (codigoParameto)
       this.produtoService.getProduto(codigoParameto)

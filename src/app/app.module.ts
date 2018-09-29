@@ -12,6 +12,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { PrincipalComponent } from './principal.component';
 import { ProdutosComponent } from './produto/produtos.component';
+import { ProdutoEditarCanActivateGuard } from './guards/produto-editar-can-activate.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { ProdutosComponent } from './produto/produtos.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'produtos', component: ProdutosComponent },
-      { path: 'produto/:codigo/edit', component: EditarProdutosComponent },
+      { path: 'produto/:codigo/edit', canActivate: [ProdutoEditarCanActivateGuard], component: EditarProdutosComponent },
       { path: 'principal', component: PrincipalComponent },
       { path: '', redirectTo: 'principal', pathMatch: 'full' }
     ])

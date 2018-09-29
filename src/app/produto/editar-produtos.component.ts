@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { IProduto } from './produto';
 import { Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -15,14 +15,20 @@ export class EditarProdutosComponent implements OnInit {
   @Input()
   produtoEditar : IProduto;
 
+  @Input()
+  IsEditar : boolean;
+
   constructor(private route : ActivatedRoute, private produtoService : ProdutoService) { }
 
   ngOnInit() {
-    console.log(+this.route.snapshot.paramMap.get('codigo'));
-    this.produtoService.getProduto(+this.route.snapshot.paramMap.get('codigo'))
-                       .subscribe(
-                        data => this.produtoEditar = data
-                       );
+    if (this.IsEditar == null) throw new Error("Attribute 'IsEditar' is required"); 
+
+    let codigoParameto = +this.route.snapshot.paramMap.get('codigo');
+    if (codigoParameto)
+      this.produtoService.getProduto(codigoParameto)
+                        .subscribe(
+                          data => this.produtoEditar = data
+                        );
   }
 
   confirmarEdicao : (formulario : NgForm) => void = 

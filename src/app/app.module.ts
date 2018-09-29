@@ -11,6 +11,7 @@ import { EditarProdutosComponent } from './produto/editar-produtos.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { PrincipalComponent } from './principal.component';
+import { ProdutosComponent } from './produto/produtos.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PrincipalComponent } from './principal.component';
     AvaliacaoComponent,
     EditarProdutosComponent,
     PrincipalComponent,
-    HighlightDirective
+    HighlightDirective,
+    ProdutosComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,7 @@ import { PrincipalComponent } from './principal.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: 'produtos', component: ListarProdutosComponent },
+      { path: 'produtos', component: ProdutosComponent },
       { path: 'produto/:codigo/edit', component: EditarProdutosComponent },
       { path: 'principal', component: PrincipalComponent },
       { path: '', redirectTo: 'principal', pathMatch: 'full' }

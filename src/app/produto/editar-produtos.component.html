@@ -31,7 +31,7 @@
         <label>Avaliacao:</label>
         <avaliacao class="form-control" (valorChange)="onAvaliacaoChange($event)" enableEdit="true" [valor]="produtoEditar.avaliacao"></avaliacao>
       </div>
-      <button class="btn btn-primary" type="submit">Confirmar</button>
+      <button class="btn btn-primary" type="submit" [disabled]="formulario.invalid">Confirmar</button>
     </form>
   </div>
 </div>

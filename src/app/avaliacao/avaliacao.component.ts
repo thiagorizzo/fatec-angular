@@ -3,6 +3,7 @@ import { Input } from "@angular/core";
 import { SimpleChanges } from "@angular/core";
 import { EventEmitter } from "@angular/core";
 import { Output } from "@angular/core";
+import { OnInit } from "@angular/core";
 
 @Component(
     {
@@ -11,7 +12,7 @@ import { Output } from "@angular/core";
         styleUrls: ["avaliacao.component.css"]
     }
 )
-export class AvaliacaoComponent implements OnChanges {
+export class AvaliacaoComponent implements OnChanges, OnInit {
     @Input()
     enableEdit : boolean = false;
 
@@ -23,6 +24,10 @@ export class AvaliacaoComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) : void {
 
+    }
+
+    ngOnInit(): void {
+        if (this.enableEdit == null) throw new Error("Attribute 'enableEdit' is required"); 
     }
 
     getEstrelas : () => any[] =
